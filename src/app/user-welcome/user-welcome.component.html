@@ -1,0 +1,318 @@
+<div class="col-sm-2 sticky">
+    <div class="cardShadow tCenter profileCard" (click)="routeToProfile()">
+        <div class="profileBack"></div>
+        <img class="profileUserImage" src="assets/images/user.png" alt="">
+        <p class="profileNameField">Welcome, {{user.firstName}}</p>
+        <p class="profileEditLink" routerLink="/userDashboard/editProfile">Edit your profile</p>
+        <p class="followerNumber">59</p>
+        <p>Followers</p>
+    </div>
+</div>
+<div class="col-sm-6">
+    <div class="postCard cardShadow mb20">
+        <div class="postForm">
+            <div class="userInfo" #userInfo>
+                <img src="assets/images/user.png" class="profileUserImage col-sm-3">
+                <div class="userDetail col-sm-9">
+                    <p class="postCardUsername">Shubham Kumar</p>
+                    <p class="postCardUserHeadline">A college student</p>
+                </div>
+            </div>
+            <form [formGroup]="postForm" (ngSubmit)="addNewPost()" novalidate="">
+                <textarea formControlName="text" rows="2" #postInput class="postInput" (focus)="postFocused($event)" (blur)="postUnfocused()"
+                    placeholder="Share an article, photo or idea"></textarea>
+                <!-- <div class="form-group" [ngClass]="{'has-danger': postForm.get('imageSelect').touched && (postForm.get('imageSelect').status == 'INVALID'),'has-success': postForm.get('imageSelect').dirty && (postForm.get('imageSelect').status == 'VALID')}">
+                            <label for="imageSelectInput">Select image: </label>
+                            <input class="col-sm-8 fileInput" type="file" id="imageSelectInput" (change)="onImageSelect($event)" #imageFileInput>
+                            <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+                        </div> -->
+                <br>
+                <hr>
+                <div class="buttonCollection">
+                    <button class="btn btn-default featureButton" routerLink="/userDashboard/blogPost">
+                        <i class="fa fa-edit pr5"></i>Write a post</button>
+                    <button class="btn btn-default featureButton" type="file">
+                        <i class="fa fa-camera pr5"></i>Images</button>
+                    <button class="btn btn-primary postButton" type="submit" [disabled]="!postForm.valid">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-12 feeds p0">
+        <div class=" col-sm-12 feedContainer cardShadow">
+            <div class="col-sm-12 feedUserImage p0 vCenter">
+                <img alt="" class="col-sm-2 bdr50" src="assets/images/user.png">
+                <div class="col-sm-10 feedUsername pl0">
+                    <span>Shubham Kumar</span>
+                    <p>student</p>
+                </div>
+            </div>
+            <div class="col-sm-12 feedContent">
+                <p>Yeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read
+                    thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you
+                    may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah
+                    you may read thisYeah you may read this</p>
+            </div>
+            <div class="col-sm-12">
+                <span>22 Likes</span>
+                <span class="feedDot">
+                    <i class="fa fa-circle"></i>
+                </span>
+                <span>26 Comments</span>
+                <hr class="feedHr">
+            </div>
+            <p class="col-sm-12">
+                <button class=" btn btn-default lcBtn" (click)="likeIt($event)">
+                    <span class="fa fa-thumbs-up lcSign"></span>Like
+                </button>
+                <button class="btn btn-default lcBtn">
+                    <span class="fa fa-comment lcSign"></span>Comment
+                </button>
+            </p>
+            <div class="col-sm-12 vCenter">
+                <img alt="" class="col-sm-1 p0 bdr50" src="assets/images/user.png">
+                <div class="col-sm-11">
+                    <input class="form-control" placeholder="Add a comment" (keyup.enter)="addComment($event)" type="text">
+                </div>
+            </div>
+            <div *ngFor="let com of comments" class="col-sm-12 vCenter">
+                <img alt="" class="col-sm-1 p0 bdr50" src="assets/images/user.png">
+                <div class="col-sm-11">
+                    <!-- <input class="form-control" placeholder="Add a comment" (keyup.enter)="addComment($event)" type="text"> -->
+                    <p>{{com}}</p>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-12 feedContainer cardShadow">
+            <div class="col-sm-12 feedUserImage p0 vCenter">
+                <img alt="" class="col-sm-2 bdr50" src="assets/images/user.png">
+                <div class="col-sm-10 feedUsername pl0">
+                    <span>Shubham Kumar</span>
+                    <p>student</p>
+                </div>
+            </div>
+            <div class="col-sm-12 feedContent">
+                <p>Yeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read
+                    thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you
+                    may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah
+                    you may read thisYeah you may read this</p>
+            </div>
+            <div class="col-sm-12">
+                <span>22 Likes</span>
+                <span class="feedDot">
+                    <i class="fa fa-circle"></i>
+                </span>
+                <span>26 Comments</span>
+                <hr class="feedHr">
+            </div>
+            <p class="col-sm-12">
+                <button class=" btn btn-default lcBtn" (click)="likeIt($event)">
+                    <span [class.liked]="liked" class="fa fa-thumbs-up lcSign"></span>Like
+                </button>
+                <button class="btn btn-default lcBtn">
+                    <span class="fa fa-comment lcSign"></span>Comment
+                </button>
+            </p>
+            <div class="col-sm-12 vCenter">
+                <img alt="" class="col-sm-1 p0 bdr50" src="assets/images/user.png">
+                <div class="col-sm-11">
+                    <input class="form-control" placeholder="Add a comment" (keyup.enter)="addComment($event)" type="text">
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-12 feedContainer cardShadow">
+            <div class="col-sm-12 feedUserImage p0 vCenter">
+                <img alt="" class="col-sm-2 bdr50" src="assets/images/user.png">
+                <div class="col-sm-10 feedUsername pl0">
+                    <span>Shubham Kumar</span>
+                    <p>student</p>
+                </div>
+            </div>
+            <div class="col-sm-12 feedContent">
+                <p>Yeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read
+                    thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you
+                    may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah
+                    you may read thisYeah you may read this</p>
+            </div>
+            <div class="col-sm-12">
+                <span>22 Likes</span>
+                <span class="feedDot">
+                    <i class="fa fa-circle"></i>
+                </span>
+                <span>26 Comments</span>
+                <hr class="feedHr">
+            </div>
+            <p class="col-sm-12">
+                <button class=" btn btn-default lcBtn" (click)="likeIt($event)" >
+                    <span [class.liked]="liked" class="fa fa-thumbs-up lcSign"></span>Like
+                </button>
+                <button class="btn btn-default lcBtn">
+                    <span class="fa fa-comment lcSign"></span>Comment
+                </button>
+            </p>
+            <div class="col-sm-12 vCenter">
+                <img alt="" class="col-sm-1 p0 bdr50" src="assets/images/user.png">
+                <div class="col-sm-11">
+                    <input class="form-control" placeholder="Add a comment" (keyup.enter)="addComment($event)" type="text">
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-12 feedContainer cardShadow">
+            <div class="col-sm-12 feedUserImage p0 vCenter">
+                <img alt="" class="col-sm-2 bdr50" src="assets/images/user.png">
+                <div class="col-sm-10 feedUsername pl0">
+                    <span>Shubham Kumar</span>
+                    <p>student</p>
+                </div>
+            </div>
+            <div class="col-sm-12 feedContent">
+                <p>Yeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read
+                    thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you
+                    may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah you may read thisYeah
+                    you may read thisYeah you may read this</p>
+            </div>
+            <div class="col-sm-12">
+                <span>22 Likes</span>
+                <span class="feedDot">
+                    <i class="fa fa-circle"></i>
+                </span>
+                <span>26 Comments</span>
+                <hr class="feedHr">
+            </div>
+            <p class="col-sm-12">
+                <button class=" btn btn-default lcBtn" (click)="likeIt($event)">
+                    <span [class.liked]="liked" class="fa fa-thumbs-up lcSign"></span>Like
+                </button>
+                <button class="btn btn-default lcBtn">
+                    <span class="fa fa-comment lcSign"></span>Comment
+                </button>
+            </p>
+            <div class="col-sm-12 vCenter">
+                <img alt="" class="col-sm-1 p0 bdr50" src="assets/images/user.png">
+                <div class="col-sm-11">
+                    <input class="form-control" placeholder="Add a comment" (keyup.enter)="addComment($event)" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-4">
+    <div class="col-sm-12 cardShadow cardsContainer">
+        <header>
+            <h4 class="heading">TOP CIO</h4>
+        </header>
+        <div class="col-sm-12 mAuto mb10" *ngFor="let cio of allCio">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <span class="cioName">{{cio.firstName}} {{cio.lastName}}</span>
+                    <p class="tCioBtnContainer">
+                        <button  class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="following($event, cio)">FOLLOW</button>
+                        <button class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq($event, cio)">ADD FRIEND</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <span class="cioName">Jhon</span>
+                    <p class="tCioBtnContainer">
+                        <button  class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="following($event)">FOLLOW</button>
+                        <button class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq($event)">ADD FRIEND</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <span class="cioName">Andy</span>
+                    <p class="tCioBtnContainer">
+                        <button  class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="following($event)">FOLLOW</button>
+                        <button class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq($event)">ADD FRIEND</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <span class="cioName">Mandy</span>
+                    <p class="tCioBtnContainer">
+                        <button  class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="following($event)">FOLLOW</button>
+                        <button class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq($event)">ADD FRIEND</button>
+                    </p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="col-sm-12 cardShadow cardsContainer">
+        <header>
+            <h4 class="heading">BEST BLOGS</h4>
+        </header>
+        <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <h4>Managing like a King</h4>
+                    <p>
+                        by - Hari Nath Kumar
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <h4>Be a better Leader</h4>
+                    <p>
+                        by - Rajesh Kumar
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <h4>Your company is your another Family</h4>
+                    <p>
+                        by - Raghu Singh
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 mAuto mb10">
+            <div class="notificationCard cardShadow p10 vCenter">
+                <div class="fl-b30 tCenter">
+                    <img class="notiIcon" src="assets/images/user.png">
+                </div>
+                <div class="fl-b70">
+                    <h4>Making money out of Nothing</h4>
+                    <p>
+                        by - Ram Yadav
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,166 @@
+<div class="container">
+  <h2>My Library</h2>
+  <hr>
+  <div class="row mb-5">
+    <div class="col-sm-3 bookCategory" (click)="libraryList('myLibrary','researchpapers')">
+      <div class="myInnerBlock">
+        <img src="/assets/images/Small-N-Flat-Folder.svg" alt="Folder Icon">
+        <h4>Research Papers</h4>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory" (click)="libraryList('myLibrary','technicalpapers')">
+      <div class="myInnerBlock">
+         <img src="/assets/images/Small-N-Flat-Folder.svg" alt="Folder Icon">
+        <h4>Technical Papers</h4>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory" (click)="libraryList('myLibrary','article')">
+      <div class="myInnerBlock">
+         <img src="/assets/images/Small-N-Flat-Folder.svg" alt="Folder Icon">
+        <h4>Article</h4>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory" (click)="libraryList('myLibrary','important')">
+      <div class="myInnerBlock">
+         <img src="/assets/images/Small-N-Flat-Folder.svg" alt="Folder Icon">
+        <h4>Important</h4>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory">
+      <div class="myInnerBlock" data-toggle="modal" data-target="#searcResultModal">
+         <img class="mt-30" src="/assets/images/material-icon.png" alt="Add your new document">
+        <h4>Add more</h4>
+      </div>
+    </div>
+  </div>
+  <h2>Public Library</h2>
+  <hr>
+  <div class="row mb-5">
+    <div class="col-sm-3 bookCategory" (click)="libraryList('publicLibrary','iot')">
+      <div class="innerBlock">
+        <h1>IOT</h1>
+        <p></p>
+        <span>4 Papers</span>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory" (click)="libraryList('publicLibrary','blockchain')">
+      <div class="innerBlock">
+        <h1>BlockChain</h1>
+        <p></p>
+        <span>11 Papers</span>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory" (click)="libraryList('publicLibrary','bigdata')">
+      <div class="innerBlock">
+        <h1>Big Data</h1>
+        <p></p>
+        <span>4 Papers</span>
+      </div>
+    </div>
+    <div class="col-sm-3 bookCategory" (click)="libraryList('publicLibrary','cybersecurity')">
+      <div class="innerBlock">
+        <h1>Cyber Security</h1>
+        <p></p>
+        <span>4 Papers</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- search result modal starts -->
+<div class="modal fade searcResultModal" id="searcResultModal" tabindex="-1" role="dialog" aria-labelledby="searcResultModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="searcResultModalLabel">Upload New Document</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="row">
+          <ul class="packageList">
+            <li class="col-sm-12">
+              <div class="col-sm-3">
+                <img src="/assets/images/fileicon.svg.png" alt="" class="d-block w-100">
+              </div>
+              <div class="col-sm-9 packDetail">
+                <h2>IOT is the next revolution
+                </h2>
+                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.
+                </blockquote>
+                <div class="amenities">
+                  <h4>Rajesh Kumar</h4>
+                  <span> Published on
+                    <time datetime="2017-12-10">10-Dec-2017</time>
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li class="col-sm-12">
+              <div class="col-sm-3">
+                <img src="/assets/images/fileicon.svg.png" alt="" class="d-block w-100">
+              </div>
+              <div class="col-sm-9 packDetail">
+                <h2>IOT is the next revolution
+                </h2>
+                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.
+                </blockquote>
+                <div class="amenities">
+                  <h4>Rajesh Kumar</h4>
+                  <span> Published on
+                    <time datetime="2017-12-10">10-Dec-2017</time>
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li class="col-sm-12">
+              <div class="col-sm-3">
+                <img src="/assets/images/fileicon.svg.png" alt="" class="d-block w-100">
+              </div>
+              <div class="col-sm-9 packDetail">
+                <h2>IOT is the next revolution
+                </h2>
+                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.
+                </blockquote>
+                <div class="amenities">
+                  <h4>Rajesh Kumar</h4>
+                  <span> Published on
+                    <time datetime="2017-12-10">10-Dec-2017</time>
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li class="col-sm-12">
+              <div class="col-sm-3">
+                <img src="/assets/images/fileicon.svg.png" alt="" class="d-block w-100">
+              </div>
+              <div class="col-sm-9 packDetail">
+                <h2>IOT is the next revolution
+                </h2>
+                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.
+                </blockquote>
+                <div class="amenities">
+                  <h4>Rajesh Kumar</h4>
+                  <span> Published on
+                    <time datetime="2017-12-10">10-Dec-2017</time>
+                  </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div> -->
+        <app-upload-doc></app-upload-doc>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- search result modal ends -->

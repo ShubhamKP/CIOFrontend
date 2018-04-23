@@ -1,0 +1,28 @@
+.cardPadding{
+    padding: 15px 0px;
+}
+
+.username{
+    margin-bottom: 2px;
+}
+
+.position{
+    color: #aaa;
+}
+
+.followers{
+    padding-right: 5px;font-size: 2rem;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}

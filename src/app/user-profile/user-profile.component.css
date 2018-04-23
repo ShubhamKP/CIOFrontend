@@ -1,0 +1,47 @@
+.profileBack {
+    background: url(/assets/images/profileBackground.jpg);
+    background-size: cover;
+    height: 180px;
+    margin-bottom: calc(-180px * (4 / 10));
+    border-radius: 3px 3px 0px 0px;
+}
+
+.profileUserImage {
+    padding: 0px;
+    margin-bottom: 20px;
+    width: 130px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0px 3px 5px grey;
+}
+
+.name {    
+	font-size: 2em;
+    margin-bottom: 2px;
+	letter-spacing: 3px;
+}
+
+.headline{
+    font-size: 1.4em;
+	margin-bottom: 2px;
+}
+
+.email{
+    font-size: 1.3em;
+    margin-bottom: 5px;
+	color: #9a9797;
+}
+
+.country{
+    font-size: 1.3em;
+    color: #9a9797;
+}
+
+.dot{
+	font-size: 0.7rem;
+    vertical-align: middle;
+}
+
+.bRad-0 {
+    border-radius: 0px;
+}

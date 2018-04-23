@@ -1,0 +1,115 @@
+.inlineB{
+    display: inline-block;
+}
+.mt20{
+    margin-top: 20px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+
+.serviceImage{
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+{
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 0;
+}
+
+.nav-tabs {
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 3px 2px 6px 0px #ddd;
+}
+
+.nav-tabs>li {
+    float: none;
+    margin-bottom: 10px;
+}
+
+.nav-tabs>li>a{
+    border-radius: 4px;
+}
+
+.tab-content{
+    padding-top: 0px;
+}
+
+.userCard{
+    margin: 0px auto;
+    float: none;
+    box-shadow: 3px 2px 6px 0px #ddd;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.userImg{
+    margin: 0 auto;
+    display: block;
+    width: 200px;
+    border-radius: 50%;
+}
+
+#searchInput{
+    width: 65%;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/assets/search-icon-512.png');
+    background-position: 3px 1px; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 12px 20px 12px 60px;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+#searchBtn{
+	padding: 12px;
+    font-size: 16px;
+    margin-left: -8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+.searchResult{
+    margin-bottom: 50px;
+}
+
+.searchResWrapper{
+    border: 1px solid #dddddd;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.searchResWrapper > div > p{
+    padding: 10px;
+    background-color: lightblue;
+    margin: 10px 0px;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.searchResWrapper > div > p:hover{
+    background-color: #084fb5 !important;
+    cursor: pointer;
+    color: white;
+}
+
+.searchResWrapper > div > p > span:last-child{
+    position: absolute;
+    right: 10px;
+}

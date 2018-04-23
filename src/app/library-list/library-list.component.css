@@ -1,0 +1,81 @@
+.searcResultLabel {
+    margin: 30px auto;
+    padding: 0px 20px;
+}
+
+.packageList {
+    /* display: flex; */
+    list-style-type: none;
+    padding: 0px 30px;
+}
+
+.packageList>li {
+    display: flex;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 7px 2px #aaa;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.d-block {
+    display: block;
+}
+
+.w-100 {
+    width: 80%;
+}
+
+.packDetail {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.packDetail>h2 {
+    margin-top: 0;
+}
+
+.packDetail>P {
+    font-family: 'Lato', sans-serif;
+    color: #aaa;
+}
+
+.amenities {
+    position: absolute;
+    bottom: 10px;
+}
+
+.amenities>p>span {
+    display: inline-block;
+    border: 1px solid #f18860;
+    box-shadow: 2px 2px 5px 1px #fcbf7d;
+    color: #210760;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.amenities>p>span>svg {
+    color: green;
+    margin: 0px 5px;
+}
+
+.sec2>p:first-child {
+    font-size: 2em;
+    margin-bottom: 0;
+    color: #ea4b35;
+    text-align: right;
+}
+
+.sec2>p:nth-child(2) {
+    font-family: 'Lato', sans-serif;
+    color: #aaa;
+    text-align: right;
+    font-size: 0.8rem;
+}
+
+.sec2>button {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}

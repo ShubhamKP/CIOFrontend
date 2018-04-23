@@ -1,0 +1,69 @@
+<div class="col-md-12">
+  <h2 class="page-header">Update profile</h2>
+</div>
+
+<div class="col-sm-12">
+  <div class="userCard col-sm-6 mAuto">
+    <img class="userImg" *ngIf="user.pictureUrl" [src]="user.pictureUrl" alt="User LinkedIn Profile Image">
+    <form [formGroup]="updateMeForm" novalidate>
+        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('firstName').touched && (updateMeForm.get('firstName').status == 'INVALID'),'has-success': updateMeForm.get('firstName').dirty && (updateMeForm.get('firstName').status == 'VALID')}">
+            <label class="sr-only" for="firstNameInput">First Name</label>
+            <input class="form-control" type="text" id="firstNameInput" formControlName="firstName" placeholder="eg: Sushil">
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('lastName').touched && (updateMeForm.get('lastName').status == 'INVALID'),'has-success': updateMeForm.get('lastName').dirty && (updateMeForm.get('lastName').status == 'VALID')}">
+            <label class="sr-only" for="lastNameInput">Last Name</label>
+            <input class="form-control" type="text" id="lastNameInput" formControlName="lastName" placeholder="eg: Kumar">
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('email').touched && (updateMeForm.get('email').status == 'INVALID'),'has-success': updateMeForm.get('email').dirty && (updateMeForm.get('email').status == 'VALID')}">
+            <label class="sr-only" for="emailInput">Email</label>
+            <input class="form-control" type="email" id="emailInput" formControlName="email" placeholder="eg: suhsil@abc.com">
+            <small *ngIf="updateMeForm.get('email').dirty && (updateMeForm.get('email').status == 'INVALID')" class="form-control-feedback">Please enter correct email-id</small>
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('headline').touched && (updateMeForm.get('headline').status == 'INVALID'),'has-success': updateMeForm.get('headline').dirty && (updateMeForm.get('headline').status == 'VALID')}">
+            <label class="sr-only" for="headlineInput">What you do</label>
+            <input class="form-control" type="text" id="headlineInput" formControlName="headline" placeholder="What you do..">
+        </div>
+        <div class="form-group row mtb15" [ngClass]="{'has-danger': updateMeForm.get('profileUrl').touched && (updateMeForm.get('profileUrl').status == 'INVALID'),'has-success': updateMeForm.get('profileUrl').dirty && (updateMeForm.get('profileUrl').status == 'VALID')}">
+            <label class="col-sm-3" for="profileUrlInput">LinkedIn Profile Url</label>
+            <input class="form-control" type="text" id="profileUrlInput" formControlName="profileUrl" placeholder="Your LinkedIn profile url">
+        </div>
+        <div class="form-group row mtb15" [ngClass]="{'has-danger': updateMeForm.get('profilePicture').touched && (updateMeForm.get('profilePicture').status == 'INVALID'),'has-success': updateMeForm.get('profilePicture').dirty && (updateMeForm.get('profilePicture').status == 'VALID')}">
+          <label class="col-sm-3" for="profilePictureInput">Profile Picture Url</label>
+          <input class="form-control mb15" type="text" placeholder="Profile Image url" disabled [value]="searchResult.pictureUrl">
+            <input class="col-sm-8 fileInput" type="file" id="profilePictureInput" (change)="onFileChange($event)" #fileInput>
+            <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('age').touched && (updateMeForm.get('age').status == 'INVALID'),'has-success': updateMeForm.get('age').dirty && (updateMeForm.get('age').status == 'VALID')}">
+            <label class="sr-only" for="ageInput">Age</label>
+            <input class="form-control" type="number" id="ageInput" formControlName="age" placeholder="Age">
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('country').touched && (updateMeForm.get('country').status == 'INVALID'),'has-success': updateMeForm.get('country').dirty && (updateMeForm.get('country').status == 'VALID')}">
+            <label class="sr-only" for="countryInput">Country</label>
+            <input class="form-control" type="text" id="countryInput" formControlName="country" placeholder="Country">
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('industry').touched && (updateMeForm.get('industry').status == 'INVALID'),'has-success': updateMeForm.get('industry').dirty && (updateMeForm.get('industry').status == 'VALID')}">
+            <label class="sr-only" for="industryInput">Industry</label>
+            <input class="form-control" type="text" id="industryInput" formControlName="industry" placeholder="Industry">
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('degree').touched && (updateMeForm.get('degree').status == 'INVALID'),'has-success': updateMeForm.get('degree').dirty && (updateMeForm.get('degree').status == 'VALID')}">
+            <label class="sr-only" for="degreeInput">Degree</label>
+            <input class="form-control" type="text" id="degreeInput" formControlName="degree" placeholder="Degree">
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('achievements').touched && (updateMeForm.get('achievements').status == 'INVALID'),'has-success': updateMeForm.get('achievements').dirty && (updateMeForm.get('achievements').status == 'VALID')}">
+            <label class="sr-only" for="achievementsInput">Achievements</label>
+            <input class="form-control" type="text" id="achievementsInput" formControlName="achievements" placeholder="Achievements">
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('experience').touched && (updateMeForm.get('experience').status == 'INVALID'),'has-success': updateMeForm.get('experience').dirty && (updateMeForm.get('experience').status == 'VALID')}">
+            <label class="sr-only" for="experienceInput">Experience</label>
+            <input class="form-control" type="text" id="experienceInput" formControlName="experience" placeholder="Experience">
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('hobbies').touched && (updateMeForm.get('hobbies').status == 'INVALID'),'has-success': updateMeForm.get('hobbies').dirty && (updateMeForm.get('hobbies').status == 'VALID')}">
+            <label class="sr-only" for="hobbiesInput">Hobbies</label>
+            <input class="form-control" type="text" id="hobbiesInput" formControlName="hobbies" placeholder="Hobbies">
+          </div>
+        <button type="submit" class="btn btn-primary" (click)="updateProfile()">Update
+            <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+        </button>
+    </form>
+  </div>
+</div>

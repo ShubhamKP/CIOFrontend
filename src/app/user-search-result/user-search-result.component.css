@@ -1,0 +1,29 @@
+.notificationCard{
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0px;
+}
+.notiIcon{
+    width: 85%;
+    border-radius: 50%;
+}
+.notiName{
+    font-weight: 600;
+}
+.cioName{
+    font-weight: normal;
+    font-size: 2rem;
+}
+.searchedUserIcon{
+    margin: 0 auto;
+    display: block;
+    width: 25%;
+}
+.acceptBtn{
+    float: right;
+    margin-top: 5px;
+}
+.viewProfileBtn{
+    margin-top: 2%;
+    margin-right: 50px; 
+}

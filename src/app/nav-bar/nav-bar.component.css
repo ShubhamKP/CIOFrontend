@@ -1,0 +1,94 @@
+/* #buttons>button:hover {
+    color: #282828;
+    background-color: #fff;
+    border-color: #fff;
+    cursor: pointer;
+}
+
+#buttons>button {
+    color: #ffffff;
+    background-image: none;
+    background-color: transparent;
+    border-color: #ffffff;
+    padding: 5px 16px;
+} */
+
+.mAuto{
+    display: block;
+    margin: 0 auto;
+    float: none;
+}
+
+.tCenter{
+    text-align: center;
+}
+
+#buttons{
+    padding: 12px;
+    display: inline-block;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.activeLink{
+    color: #00aeef !important;
+}
+
+.modal-title{
+    width: 90%;
+    display: inline-block;
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 15% 10%;
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 500px;
+        margin: 10% auto;
+    }
+}
+
+.modal-footer {
+    justify-content: center;
+    text-align: center;
+}
+
+.social-btns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkedin-login-button{
+    background: url("/assets/Retina/Sign-In-Small---Default.png");
+    cursor: pointer;
+    height: 40px;
+    width: 62.4%;
+    background-size: 100% 100%;
+    border: none;
+}
+
+.linkedin-login-button:active{
+    background: url("/assets/Retina/Sign-In-Small---Active.png");
+    background-size: 100% 100%;
+}
+
+.linkedin-login-button:hover{
+    background: url("/assets/Retina/Sign-In-Small---Hover.png");
+    background-size: 100% 100%;
+}

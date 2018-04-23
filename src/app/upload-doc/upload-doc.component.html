@@ -1,0 +1,20 @@
+<!-- <h4 class="mb20">Upload Your Documents</h4> -->
+<form [formGroup]="uploadDocForm" (ngSubmit)="uploadDocs()" novalidate>
+  <div class="form-group" [ngClass]="{'has-danger': uploadDocForm.get('docFile').touched && (uploadDocForm.get('docFile').status == 'INVALID'),'has-success': uploadDocForm.get('docFile').dirty && (uploadDocForm.get('docFile').status == 'VALID')}">
+    <label for="docFileInput">Select document file: </label>
+    <div id="docFileHolder" #docFileHolder></div>
+    <input class="col-sm-8 fileInput" type="file" id="docFileInput" #fileInput>
+    <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+  </div>
+  <div class="form-group" [ngClass]="{'has-danger': uploadDocForm.get('tags').touched && (uploadDocForm.get('tags').status == 'INVALID'),'has-success': uploadDocForm.get('tags').dirty && (uploadDocForm.get('tags').status == 'VALID')}">
+    <label class="col-2" for="typeInput">Choose tags:</label>
+    <p>(you can select multiple tags by holding down the Ctrl (windows) / Command (Mac) button)</p>
+    <select id="tagInput" multiple class="form-control col-2" formControlName="tags">
+      <option value="" disabled selected hidden>Choose an Option...</option>
+      <option value="IOT">IOT</option>
+      <option value="Big Data">Big Data</option>
+      <option value="Blockchain">Blockchain</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!uploadDocForm.valid">Upload</button>
+</form>

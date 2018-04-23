@@ -1,0 +1,90 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "~bootstrap/dist/css/bootstrap.min.css" */
+
+/* common styles */
+.mAuto{
+    margin: 0 auto;
+    float: none !important;
+}
+.block{
+    display: block !important;
+}
+.bdr50{
+ border-radius: 50%;   
+}
+.fl-r{
+    float: right;
+}
+.p0{
+    padding: 0px !important;
+}
+.pl0{
+    padding-left: 0px !important;
+}
+.pr0{
+    padding-right: 0px !important;
+}
+.pr5{
+    padding-right: 5px;
+}
+.m0{
+    margin: 0px !important;
+}
+.ma10{
+    margin: 10px;
+}
+.ma15{
+    margin: 15px;
+}
+.mt20{
+    margin-top: 20px;
+}
+.mt55{
+    margin-top: 55px;
+}
+.mt100{
+    margin-top: 100px;
+}
+.mb10{
+    margin-bottom: 10px;
+}
+.mb15{
+    margin-bottom: 15px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.mr10{
+    margin-right: 10px;
+}
+.mb0{
+    margin-bottom: 0px;
+}
+.p10{
+    padding: 10px;
+}
+.fl-auto{
+    flex: 1 1 auto;
+}
+.fl-b20{
+    flex-basis: 20%;
+}
+.fl-b80{
+    flex-basis: 80%;
+}
+.fl-b30{
+    flex-basis: 30%;
+}
+.fl-b70{
+    flex-basis: 70%;
+}
+.tCenter{
+    text-align: center;
+}
+.cardShadow{
+    box-shadow: 3px 2px 6px 0px #ddd;
+    border: 1px solid #ddd;
+}
+.maxH70p{
+    max-height: 70px;
+}

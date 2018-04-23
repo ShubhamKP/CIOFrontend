@@ -1,0 +1,639 @@
+<nav class="navbar navbar-expand-lg navbarFixed">
+    <a class="navbar-brand" routerLink="/userDashboard">
+        <!-- <button id="menuBtn" class="btn btn-primary" (click)="toggleSidebar($event)">
+            <i class="fa fa-bars"></i>
+        </button> -->
+        CIO's Dashboard</a>
+    <div id="searchBarContainer">
+        <form id="searchForm" class="" (ngSubmit)="search()" [formGroup]="searchForm" novalidate>
+            <input class="mt20 mb20" formControlName="searchValue" id="searchInput" name="search" placeholder="Search.." type="text">
+            <button id="searchBtn" type="submit">Search</button>
+            <div id="sOptions">
+                <span>Search By: </span>
+                <label class="radio-inline" *ngFor="let category of searchCategory">
+                    <input id="searchByOption" type="radio" formControlName="searchBy" [value]="category">{{ category }}
+                </label>
+            </div>
+        </form>
+    </div>
+    <div id="navMenu">
+        <div class="dropdown fl-r ma10 mb0 tCenter">
+            <a class="dropdown-toggle user" type="button" data-toggle="dropdown" aria-expanded="false">
+                <span class="fa fa-user"></span>
+                <p class="iconLable">Me
+                    <i class="fa fa-caret-down"></i>
+                </p>
+            </a>
+            <ul class="dropdown-menu rightDropdown">
+                <li>
+                    <a routerLink="/userDashboard/editProfile">Edit Profile</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div class="fl-r ma10 mb0 tCenter">
+            <a class="user libLink" type="button" routerLink="/userDashboard/library">
+                <span class="fa fa-book"></span>
+                <p class="iconLable">Library</p>
+            </a>
+        </div>
+        <div class="dropdown fl-r ma10 mb0 tCenter">
+            <a class="dropdown-toggle user" type="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell"></i>
+                <small class="fa fa-circle notificationIconCountCircle">
+                    <span class="notificationIconCount">12</span>
+                </small>
+                <p class="m0 iconLable">Notification</p>
+            </a>
+            <ul class="dropdown-menu notiDropdown">
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName">Shubham Kumar</span>
+                            <p>
+                                <i>published a new post</i>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName">Radhe Sharma</span>
+                            <p>
+                                <i>liked a post</i>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName">Jhon Doe</span>
+                            <p>
+                                <i>commented on a post</i>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="dropdown fl-r ma10 mb0 tCenter">
+            <a class="dropdown-toggle user" type="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user-plus"></i>
+                <small class="fa fa-circle notificationIconCountCircle" *ngIf="friendRequests.length > 0">
+                    <span class="notificationIconCount">{{friendRequests.length}}</span>
+                </small>
+                <p class="m0 iconLable">Requests</p>
+            </a>
+            <ul class="dropdown-menu notiDropdown" *ngIf="friendRequests.length > 0">
+                <li class="cardShadow" *ngFor="let request of friendRequests">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName" style="line-height: 40px;">{{request.name}}</span>
+                            <span>
+                                <button class="btn btn-sm btn-success acceptBtn" (click)="acceptRequest(request)">Accept</button>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <!-- <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName" style="line-height: 40px;">Radhe Sharma</span>
+                            <span>
+                                <button class="btn btn-sm btn-success acceptBtn">Accept</button>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName" style="line-height: 40px;">Jhon Doe</span>
+                            <span>
+                                <button class="btn btn-sm btn-success acceptBtn">Accept</button>
+                            </span>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+            <ul class="dropdown-menu notiDropdown" *ngIf="friendRequests.length === 0">
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="col-sm-12 tCenter">
+                            No new requests
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="dropdown fl-r ma10 mb0 tCenter">
+            <a class="dropdown-toggle user" type="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-envelope"></i>
+                <small class="fa fa-circle notificationIconCountCircle">
+                    <span class="notificationIconCount">4</span>
+                </small>
+                <p class="m0 iconLable">Messages</p>
+            </a>
+            <ul class="dropdown-menu notiDropdown">
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-auto" >
+                            <span class="notiName" style="line-height: 20px;">Shubham Kumar</span>
+                            <p><i>"Hi, How are you?"</i></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-auto" >
+                            <span class="notiName" style="line-height: 20px;">Shubham Kumar</span>
+                            <p><i>"Hi, How are you?"</i></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="cardShadow">
+                    <div class="notificationCard">
+                        <div class="fl-b20">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-auto" >
+                            <span class="notiName" style="line-height: 20px;">Shubham Kumar</span>
+                            <p><i>"Hi, How are you?"</i></p>
+                        </div>
+                    </div>
+                </li>
+                <button class="btn btn-default" routerLink="/userDashboard/messages" >View All</button>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div #sidebar class="sidebar">
+    <a type="button" class="sidebarOption" (click)="changeToHome()">
+        <span class="fa fa-home sidebarIcon"></span>
+        <span class="sidebarOptionName">Home</span>
+    </a>
+    <a type="button" class="sidebarOption" (click)="changeToPost()">
+        <span class="fa fa-pencil sidebarIcon"></span>
+        <span class="sidebarOptionName">Write a Post</span>
+    </a>
+    <a type="button" class="sidebarOption" (click)="changeToBlog()">
+        <span class="fa fa-edit sidebarIcon"></span>
+        <span class="sidebarOptionName">Write a Blog</span>
+    </a>
+</div>
+
+<div id="tab-container" class="mt100">
+    <div class="container">
+        <!-- <div class="col-md-12">
+            <h2 class="page-header">Welcome, {{user.firstName}} {{user.lastName}}</h2>
+        </div>
+        <div *ngIf="home" class="container">
+            <form id="searchForm" class="tCenter" (ngSubmit)="search()" [formGroup]="searchForm" novalidate>
+                <span>Search By: </span>
+                <label class="radio-inline" *ngFor="let category of searchCategory">
+                    <input id="searchByOption" type="radio" formControlName="searchBy" [value]="category">{{ category }}
+                </label>
+                <br>
+                <input id="searchInput" class="mt20 mb20" type="text" name="search" placeholder="Search.." formControlName="searchValue">
+                <button id="searchBtn" type="submit" [disabled]="!searchForm.valid">Search</button>
+            </form>
+            <div class="searchResult mb20" *ngIf="showResult">
+                <div class="searchResWrapper">
+                    <!-- <div *ngFor="let res of searchResult">
+                        <p [routerLink]="['/student',res.membershipNo]">
+                            <span>{{res.name}}</span>
+                            <span>{{res.email}}</span>
+                        </p>
+                    </div> -
+                    <div class="notificationCard cardShadow maxH70p">
+                        <div class="fl-b20">
+                            <img class="notiIcon searchedUserIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b80">
+                            <span class="notiName" style="line-height: 50px;">{{searchResult.firstName}} {{searchResult.lastName}}</span>
+                            <span>
+                                <button class="btn btn-sm btn-success acceptBtn viewProfileBtn">View Profile</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mainCards">
+                <div class="col-sm-5 cardShadow cardsContainer">
+                    <header>
+                        <h1>TOP CIO</h1>
+                    </header>
+                    <hr>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <span class="cioName">Shubham Kumar</span>
+                                <p>
+                                    <button #follow class="btn btn-sm btn-secondary mr10" (click)="follow(cio)" >FOLLOW</button>
+                                    <button #addFriend class="btn btn-sm btn-primary" (click)="friendReq(cio)" >ADD FRIEND</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <span class="cioName">Jhon</span>
+                                <p>
+                                    <button #follow class="btn btn-sm btn-secondary mr10" (click)="follow(cio)" >FOLLOW</button>
+                                    <button #addFriend class="btn btn-sm btn-primary" (click)="friendReq(cio)" >ADD FRIEND</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <span class="cioName">Andy</span>
+                                <p>
+                                    <button #follow class="btn btn-sm btn-secondary mr10" (click)="follow(cio)" >FOLLOW</button>
+                                    <button #addFriend class="btn btn-sm btn-primary" (click)="friendReq(cio)" >ADD FRIEND</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <span class="cioName">Mandy</span>
+                                <p>
+                                    <button #follow class="btn btn-sm btn-secondary mr10" (click)="follow(cio)" >FOLLOW</button>
+                                    <button #addFriend class="btn btn-sm btn-primary" (click)="friendReq(cio)" >ADD FRIEND</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 cardShadow cardsContainer">
+                    <header>
+                        <h1>BEST BLOGS</h1>
+                    </header>
+                    <hr>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <h4>Managing like a King</h4>
+                                <p>
+                                    by - Hari Nath Kumar
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <h4>Be a better Leader</h4>
+                                <p>
+                                    by - Rajesh Kumar
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <h4>Your company is your another Family</h4>
+                                <p>
+                                    by - Raghu Singh
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 mAuto mb10">
+                        <div class="notificationCard cardShadow p10">
+                            <div class="fl-b20">
+                                <img class="notiIcon" src="assets/images/user.png">
+                            </div>
+                            <div class="fl-b80">
+                                <h4>Making money out of Nothing</h4>
+                                <p>
+                                    by - Ram Yadav
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="post" class="container">
+            <h5>Add new Post</h5>
+            <form [formGroup]="postForm" (ngSubmit)="addNewPost()" novalidate>
+                <textarea class="form-control" formControlName="text" rows="5"></textarea>
+                <br>
+                <!-- <div class="form-group" [ngClass]="{'has-danger': postForm.get('imageSelect').touched && (postForm.get('imageSelect').status == 'INVALID'),'has-success': postForm.get('imageSelect').dirty && (postForm.get('imageSelect').status == 'VALID')}">
+                    <label for="imageSelectInput">Select image: </label>
+                    <input class="col-sm-8 fileInput" type="file" id="imageSelectInput" (change)="onImageSelect($event)" #imageFileInput>
+                    <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+                </div> ->
+                <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">Add</button>
+            </form>
+        </div>
+        <div *ngIf="blog" class="container">
+            <h5>Add new Blog</h5>
+            <form [formGroup]="blogForm" (ngSubmit)="addNewBlog()" novalidate>
+                <textarea class="form-control" formControlName="text" rows="5"></textarea>
+                <br>
+                <!-- <div class="form-group" [ngClass]="{'has-danger': blogForm.get('imageSelect').touched && (blogForm.get('imageSelect').status == 'INVALID'),'has-success': blogForm.get('imageSelect').dirty && (blogForm.get('imageSelect').status == 'VALID')}">
+                    <label for="imageSelectInput">Select image: </label>
+                    <input class="col-sm-8 fileInput" type="file" id="imageSelectInput" (change)="onImageSelect($event)" #imageFileInput>
+                    <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+                </div> --
+                <button class="btn btn-primary" type="submit" [disabled]="!blogForm.valid">Add Blog</button>
+            </form>
+        </div>
+        <div *ngIf="update" class="container" style="clear: both;">
+            <div id="userDetails">
+                <div class="userCard col-sm-6">
+                    <img class="userImg" *ngIf="user.pictureUrl" [src]="user.pictureUrl" alt="User LinkedIn Profile Image">
+                    <form [formGroup]="updateMeForm" novalidate>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('firstName').touched && (updateMeForm.get('firstName').status == 'INVALID'),'has-success': updateMeForm.get('firstName').dirty && (updateMeForm.get('firstName').status == 'VALID')}">
+                            <label class="sr-only" for="firstNameInput">First Name</label>
+                            <input class="form-control" type="text" id="firstNameInput" formControlName="firstName" placeholder="eg: Sushil">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('lastName').touched && (updateMeForm.get('lastName').status == 'INVALID'),'has-success': updateMeForm.get('lastName').dirty && (updateMeForm.get('lastName').status == 'VALID')}">
+                            <label class="sr-only" for="lastNameInput">Last Name</label>
+                            <input class="form-control" type="text" id="lastNameInput" formControlName="lastName" placeholder="eg: Kumar">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('emailAddress').touched && (updateMeForm.get('emailAddress').status == 'INVALID'),'has-success': updateMeForm.get('emailAddress').dirty && (updateMeForm.get('emailAddress').status == 'VALID')}">
+                            <label class="sr-only" for="emailInput">Email</label>
+                            <input class="form-control" type="email" id="emailInput" formControlName="emailAddress" placeholder="eg: suhsil@abc.com">
+                            <small *ngIf="updateMeForm.get('emailAddress').dirty && (updateMeForm.get('emailAddress').status == 'INVALID')" class="form-control-feedback">Please enter correct email-id</small>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('headline').touched && (updateMeForm.get('headline').status == 'INVALID'),'has-success': updateMeForm.get('headline').dirty && (updateMeForm.get('headline').status == 'VALID')}">
+                            <label class="sr-only" for="headlineInput">What you do</label>
+                            <input class="form-control" type="text" id="headlineInput" formControlName="headline" placeholder="What you do..">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('profileUrl').touched && (updateMeForm.get('profileUrl').status == 'INVALID'),'has-success': updateMeForm.get('profileUrl').dirty && (updateMeForm.get('profileUrl').status == 'VALID')}">
+                            <label class="sr-only" for="profileUrlInput">Profile Url</label>
+                            <input class="form-control" type="text" id="profileUrlInput" formControlName="profileUrl" placeholder="Your LinkedIn profile url">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('profilePicture').touched && (updateMeForm.get('profilePicture').status == 'INVALID'),'has-success': updateMeForm.get('profilePicture').dirty && (updateMeForm.get('profilePicture').status == 'VALID')}">
+                            <label class="sr-only" for="profilePictureInput">Profile Picture</label>
+                            <input class="form-control" type="text" id="profilePictureInput" (change)="onFileChange($event)" #fileInput placeholder="Profile Image url">
+                            <!-- <input class="col-sm-8 fileInput" type="file" id="profilePictureInput" (change)="onFileChange($event)" #fileInput> -->
+                            <!-- <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button> --
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('age').touched && (updateMeForm.get('age').status == 'INVALID'),'has-success': updateMeForm.get('age').dirty && (updateMeForm.get('age').status == 'VALID')}">
+                            <label class="sr-only" for="ageInput">Age</label>
+                            <input class="form-control" type="number" id="ageInput" formControlName="age" placeholder="Age">
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('country').touched && (updateMeForm.get('country').status == 'INVALID'),'has-success': updateMeForm.get('country').dirty && (updateMeForm.get('country').status == 'VALID')}">
+                            <label class="sr-only" for="countryInput">Country</label>
+                            <input class="form-control" type="text" id="countryInput" formControlName="country" placeholder="Country">
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('industry').touched && (updateMeForm.get('industry').status == 'INVALID'),'has-success': updateMeForm.get('industry').dirty && (updateMeForm.get('industry').status == 'VALID')}">
+                            <label class="sr-only" for="industryInput">Industry</label>
+                            <input class="form-control" type="text" id="industryInput" formControlName="industry" placeholder="Industry">
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('degree').touched && (updateMeForm.get('degree').status == 'INVALID'),'has-success': updateMeForm.get('degree').dirty && (updateMeForm.get('degree').status == 'VALID')}">
+                            <label class="sr-only" for="degreeInput">Degree</label>
+                            <input class="form-control" type="text" id="degreeInput" formControlName="degree" placeholder="Degree">
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('achievements').touched && (updateMeForm.get('achievements').status == 'INVALID'),'has-success': updateMeForm.get('achievements').dirty && (updateMeForm.get('achievements').status == 'VALID')}">
+                            <label class="sr-only" for="achievementsInput">Achievements</label>
+                            <input class="form-control" type="text" id="achievementsInput" formControlName="achievements" placeholder="Achievements">
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('experience').touched && (updateMeForm.get('experience').status == 'INVALID'),'has-success': updateMeForm.get('experience').dirty && (updateMeForm.get('experience').status == 'VALID')}">
+                            <label class="sr-only" for="experienceInput">Experience</label>
+                            <input class="form-control" type="text" id="experienceInput" formControlName="experience" placeholder="Experience">
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-danger': updateMeForm.get('hobbies').touched && (updateMeForm.get('hobbies').status == 'INVALID'),'has-success': updateMeForm.get('hobbies').dirty && (updateMeForm.get('hobbies').status == 'VALID')}">
+                            <label class="sr-only" for="hobbiesInput">Hobbies</label>
+                            <input class="form-control" type="text" id="hobbiesInput" formControlName="hobbies" placeholder="Hobbies">
+                          </div>
+                        <button type="submit" class="btn btn-primary" (click)="updateProfile()">Update
+                            <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- <div>
+                    <form class="mt20 mb20" (ngSubmit)="addNewCategory()" [formGroup]="newCategoryForm" novalidate>
+                        <label>Category Name</label>
+                        <input class="inlineB" name="newCategoryValue" formControlName="newCategoryValue">
+                        <button class="btn btn-primary" type="submit" [disabled]="!newCategoryForm.valid">Add</button>
+                    </form>
+                </div> --
+            </div>
+
+        </div> --
+        ----------------------------------------
+        <div class="col-sm-2">
+            <div>
+                <div class="cardShadow tCenter profileCard">
+                    <div class="profileBack"></div>
+                    <img class="profileUserImage" src="assets/images/user.png" alt="">
+                    <p class="profileNameField">Welcome, {{user.firstName}}</p>
+                    <p class="profileEditLink">Edit your profile</p>
+                    <p class="followerNumber">59</p>
+                    <p>Followers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="postCard cardShadow" >
+                <div class="postForm">
+                    <div class="userInfo" #userInfo>
+                        <img src="assets/images/user.png" class="profileUserImage col-sm-3">
+                        <div class="userDetail col-sm-9">
+                            <p class="postCardUsername">Shubham Kumar</p>
+                            <p class="postCardUserHeadline">A college student</p>
+                        </div>
+                    </div>
+                    <form [formGroup]="postForm" (ngSubmit)="addNewPost()" novalidate="">
+                        <textarea formcontrolname="text" rows="2" #postInput class="postInput" (focus)="postFocused($event)" (blur)="postUnfocused()" placeholder="Share an article, photo or idea"></textarea>
+                        <!-- <div class="form-group" [ngClass]="{'has-danger': postForm.get('imageSelect').touched && (postForm.get('imageSelect').status == 'INVALID'),'has-success': postForm.get('imageSelect').dirty && (postForm.get('imageSelect').status == 'VALID')}">
+                            <label for="imageSelectInput">Select image: </label>
+                            <input class="col-sm-8 fileInput" type="file" id="imageSelectInput" (change)="onImageSelect($event)" #imageFileInput>
+                            <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+                        </div> --------------------------
+                        <br>
+                        <hr>
+                        <div class="buttonCollection">
+                            <button class="btn btn-default featureButton"><i class="fa fa-edit pr5"></i>Write a post</button>
+                            <button class="btn btn-default featureButton" type="file"><i class="fa fa-camera pr5"></i>Images</button>
+                            <button class="btn btn-primary postButton" type="submit" [disabled]="!postForm.valid">Post</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12 cardShadow cardsContainer">
+                <header>
+                    <h4 class="heading">TOP CIO</h4>
+                </header>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <span class="cioName">Shubham Kumar</span>
+                            <p class="tCioBtnContainer">
+                                <button #follow class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="follow()">FOLLOW</button>
+                                <button #addFriend class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq()">ADD FRIEND</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <span class="cioName">Jhon</span>
+                            <p class="tCioBtnContainer">
+                                <button #follow class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="follow()">FOLLOW</button>
+                                <button #addFriend class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq()">ADD FRIEND</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <span class="cioName">Andy</span>
+                            <p class="tCioBtnContainer">
+                                <button #follow class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="follow()">FOLLOW</button>
+                                <button #addFriend class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq()">ADD FRIEND</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <span class="cioName">Mandy</span>
+                            <p class="tCioBtnContainer">
+                                <button #follow class="btn btn-sm btn-secondary tCioBtnFs mr10" (click)="follow()">FOLLOW</button>
+                                <button #addFriend class="btn btn-sm btn-primary tCioBtnFs" (click)="friendReq()">ADD FRIEND</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 cardShadow cardsContainer">
+                <header>
+                    <h4 class="heading">BEST BLOGS</h4>
+                </header>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <h4>Managing like a King</h4>
+                            <p>
+                                by - Hari Nath Kumar
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <h4>Be a better Leader</h4>
+                            <p>
+                                by - Rajesh Kumar
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <h4>Your company is your another Family</h4>
+                            <p>
+                                by - Raghu Singh
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mAuto mb10">
+                    <div class="notificationCard cardShadow p10">
+                        <div class="fl-b30">
+                            <img class="notiIcon" src="assets/images/user.png">
+                        </div>
+                        <div class="fl-b70">
+                            <h4>Making money out of Nothing</h4>
+                            <p>
+                                by - Ram Yadav
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <router-outlet></router-outlet>
+
+</div>

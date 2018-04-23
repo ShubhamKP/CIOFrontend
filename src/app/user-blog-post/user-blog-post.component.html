@@ -1,0 +1,18 @@
+<div class="col-md-12">
+  <h2 class="page-header">Write your blog</h2>
+</div>
+
+<div class="col-sm-12">
+  <div class="col-sm-6">
+    <form [formGroup]="blogForm" (ngSubmit)="addNewBlog()" novalidate>
+      <textarea class="form-control" formControlName="text" rows="5"></textarea>
+      <br>
+      <!-- <div class="form-group" [ngClass]="{'has-danger': blogForm.get('imageSelect').touched && (blogForm.get('imageSelect').status == 'INVALID'),'has-success': blogForm.get('imageSelect').dirty && (blogForm.get('imageSelect').status == 'VALID')}">
+          <label for="imageSelectInput">Select image: </label>
+          <input class="col-sm-8 fileInput" type="file" id="imageSelectInput" (change)="onImageSelect($event)" #imageFileInput>
+          <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+      </div> -->
+      <button class="btn btn-primary" type="submit" [disabled]="!blogForm.valid">Add Blog</button>
+    </form>
+  </div>
+</div>

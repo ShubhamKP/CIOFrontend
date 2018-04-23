@@ -1,0 +1,113 @@
+<div class="container col-sm 12">
+  <div class="col-sm-8">
+    <div class="info cardShadow tCenter mb20">
+      <div class="profileBack"></div>
+      <img class="profileUserImage" [src]='user.profileUrl || "assets/images/user.png"' alt="">
+      <p class="name">{{user.firstName}} {{user.lastName}}</p>
+      <p class="headline">{{user.headline || "" }} <i *ngIf="user.headline" class="fa fa-circle dot"></i> {{user.industry}} </p>
+      <p class="email">{{user.email}}</p>
+      <p class="country">{{user.country}}</p>
+      <p *ngIf="user.profileUrl">
+        <a [href]="user.profileUrl"class="btn btn-primary bRad-0">View LinkedIn Profile</a>
+      </p>
+    </div>
+    <div class="experience cardShadow col-sm-12 mb20">
+        <div class="col-md-12">
+            <h2 class="page-header">Experience</h2>
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-2">
+            <img src="/assets/images/dummyIcon.jpg" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-10">
+            <p>Worked as developer</p>
+            <p>december-2017 - january-2017</p>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-2">
+            <img src="/assets/images/dummyIcon.jpg" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-10">
+            <p>Worked as developer</p>
+            <p>june-2016 - september-2016</p>
+          </div>
+        </div>
+    </div>
+    <div class="achievements cardShadow col-sm-12 mb20">
+        <div class="col-md-12">
+            <h2 class="page-header">Achievements</h2>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-2">
+              <img src="/assets/images/dummyIcon.jpg" alt="" class="img-responsive">
+            </div>
+            <div class="col-sm-10">
+              <p>Worked as developer</p>
+              <p>december-2017 - january-2017</p>
+            </div>
+          </div>
+    </div>
+    <div class="degree cardShadow col-sm-12 mb20">
+        <div class="col-md-12">
+            <h2 class="page-header">Degree</h2>
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-2">
+            <img src="/assets/images/dummyIcon.jpg" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-10">
+            <p>B.Tech</p>
+            <p>august-2013 - august-2017</p>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-2">
+            <img src="/assets/images/dummyIcon.jpg" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-10">
+            <p>Senior Secondary</p>
+            <p>may-2012 - april-2013</p>
+          </div>
+        </div>
+    </div>
+    <div class="hobbies cardShadow col-sm-12 mb20">
+        <div class="col-md-12">
+            <h2 class="page-header">Hobbies</h2>
+        </div>
+    </div>
+    <div class="following cardShadow col-sm-12 mb20">
+        <div class="col-md-12">
+            <h2 class="page-header">Following</h2>
+        </div>
+        <div class="col-sm-12 mb10">
+          <div class="col-sm-2">
+            <img src="/assets/images/user.png" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-4">
+            <p>Harish Kumar</p>
+          </div>
+          <div class="col-sm-2">
+            <img src="/assets/images/user.png" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-4">
+            <p>Ravi Kumar</p>
+          </div>
+        </div>
+        <div class="col-sm-12 mb10">
+          <div class="col-sm-2">
+            <img src="/assets/images/user.png" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-4">
+            <p>Harish Sharma</p>
+          </div>
+          <div class="col-sm-2">
+            <img src="/assets/images/user.png" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-4">
+            <p>Ravi Patel</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

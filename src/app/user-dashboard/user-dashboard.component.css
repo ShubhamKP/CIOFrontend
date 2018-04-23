@@ -1,0 +1,351 @@
+
+.user{
+    font-size: 1.2em;
+}
+
+.libLink {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbarFixed{
+    display: flex;
+    padding: 0px 100px;
+    background: #eee;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0px;
+}
+
+.navbar-brand{
+    padding: 10px;
+    align-self: center;
+}
+
+#searchBarContainer{
+    flex: 1 1 auto;
+    text-align: right;
+    padding: 0px 20px;
+}
+
+a.dropdown-toggle:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dropdown-menu>li{
+    cursor: pointer;
+}
+
+.rightDropdown{
+    left: -40px;
+}
+
+.notiDropdown{
+    padding: 5px;
+    width: 300px;
+    left: -270px;
+}
+.notiDropdown>li{
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.notificationCard{
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0px;
+}
+.notiIcon{
+    width: 85%;
+    border-radius: 50%;
+}
+.notiName{
+    font-weight: 600;
+}
+.cioName{
+    font-weight: normal;
+    font-size: 2rem;
+}
+.heading {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.tCioBtnContainer {
+    margin: 10px 0px 0px;
+}
+
+.tCioBtnFs {
+    font-size: 1rem;
+}
+
+.notificationIconCountCircle{
+    position: absolute;
+    top: -3px;
+    left: 30px;
+    color: brown;
+}
+
+.notificationIconCount{
+    position: absolute;
+    color: white;
+    font-size: 9px;
+    top: 20%;
+    left: 20%;
+}
+
+.iconLable{
+    font-size: 1.2rem;
+}
+
+.acceptBtn{
+    float: right;
+    margin-top: 5px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+{
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 0;
+}
+
+.nav-tabs {
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 3px 2px 6px 0px #ddd;
+}
+
+.nav-tabs>li {
+    float: none;
+    margin-bottom: 10px;
+}
+
+.nav-tabs>li>a{
+    border-radius: 4px;
+}
+
+.tab-content{
+    padding-top: 0px;
+}
+
+.userCard{
+    margin: 0px auto;
+    float: none;
+    box-shadow: 3px 2px 6px 0px #ddd;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.userImg{
+    margin: 0 auto;
+    display: block;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.fileInput{
+    display: inline-block;
+    float: none;
+}
+
+#searchInput{
+    width: 30%;
+    padding: 5px 10px 5px 50px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/assets/search-icon-512.png');
+    background-position: 3px 1px; 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+#searchBtn{
+	padding: 5px;
+    font-size: 16px;
+    margin-left: -8px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+.searchResult{
+    margin-bottom: 50px;
+}
+
+.searchResWrapper{
+    border: 1px solid #dddddd;
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.searchResWrapper > div > p{
+    padding: 10px;
+    background-color: lightblue;
+    margin: 10px 0px;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.searchResWrapper > div > p:hover{
+    background-color: #084fb5 !important;
+    cursor: pointer;
+    color: white;
+}
+
+.searchResWrapper > div > p > span:last-child{
+    position: absolute;
+    right: 10px;
+}
+
+.searchedUserIcon{
+    margin: 0 auto;
+    display: block;
+    width: 35%;
+}
+
+.viewProfileBtn{
+    margin-top: 2%;
+    margin-right: 50px; 
+}
+
+.mainCards{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px auto;
+}
+
+.cardsContainer{
+    max-height: 340px;
+    overflow-y: auto;
+    margin-bottom: 40px;
+}
+
+.sidebar{
+    left: -240px;
+    width: 240px;
+    height: 100vh;
+    z-index: 50;
+    position: fixed;
+    background: rgba(210, 210, 210, 0.9);
+    transition: 0.5s left;
+}
+
+.sidebarOption{
+    display: block;
+    background: rgba(238, 238, 238, 0.9);
+    cursor: pointer;
+    color: darkblue;
+    margin: 5px 0px;
+}
+
+.sidebarIcon{
+    font-size: 2em;
+    padding: 15px;
+    padding-right: 5px;
+}
+
+.sidebarOptionName{
+    font-size: 1.2em;
+}
+
+.showSidebar{
+    left: 0px;
+}
+
+.profileCard {
+    position: fixed;
+    width: 15%;
+    left: 6%;
+    border-radius: 3px;
+}
+
+.profileBack{
+    background: url("/assets/images/profileBackground.jpg");
+    background-size: cover;
+    min-height: 55px;
+    margin-bottom: calc((-55px / 2) - 5px);
+    border-radius: 3px 3px 0px 0px;
+}
+
+.profileUserImage{
+    padding: 0px;
+    width: 60px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0px 3px 5px grey;
+}
+
+.profileNameField {
+    margin: 20px 1.6vw 3px;
+    font-weight: 600;
+}
+
+.profileEditLink {
+    font-size: 1.1rem;
+    color: blue;
+    border-bottom: 0.1px groove #eee;
+    padding-bottom: 15px;
+}
+
+.followerNumber{
+    margin: 20px 0px 1px;
+    font-size: 2rem;
+    color: #4dc4d6;
+}
+
+.postCard{
+    padding: 15px;
+}
+
+.userDetail {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.userInfo{
+    display: none;
+}
+
+.postCardUsername {
+    margin: 10px 10px 0px;
+}
+
+.postCardUserHeadline {
+    margin: 0px 10px;
+    color: #aaa;
+}
+
+.featureButton {
+    border-radius: 20px;
+}
+
+.postInput{
+    width: 100%;
+    border: none;
+    font-size: 20px !important;
+}
+
+.postInput:focus {
+    outline: none;
+}
+
+.postButton {
+    float: right;
+    padding: 3px 12px;
+}
+

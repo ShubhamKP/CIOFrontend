@@ -1,0 +1,143 @@
+.mt-30 {
+    margin-top: 30px !important;
+}
+
+/* .modal-dialog {
+    min-width: 80vw;
+    max-height: 80vh;
+}
+
+.modal-body {
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+} */
+
+#searcResultModalLabel {
+    width: 90%;
+    display: inline-block;
+}
+
+.packageList {
+    /* display: flex; */
+    list-style-type: none;
+    padding: 0px 30px;
+}
+
+.packageList>li {
+    display: flex;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 7px 2px #aaa;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.d-block {
+    display: block;
+}
+
+.w-100 {
+    width: 80%;
+}
+
+.packDetail {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.packDetail>h2 {
+    margin-top: 0;
+}
+
+.packDetail>P {
+    font-family: 'Lato', sans-serif;
+    color: #aaa;
+}
+
+.amenities {
+    position: absolute;
+    bottom: 10px;
+}
+
+.amenities>p>span {
+    display: inline-block;
+    border: 1px solid #f18860;
+    box-shadow: 2px 2px 5px 1px #fcbf7d;
+    color: #210760;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.amenities>p>span>svg {
+    color: green;
+    margin: 0px 5px;
+}
+
+.sec2>p:first-child {
+    font-size: 2em;
+    margin-bottom: 0;
+    color: #ea4b35;
+    text-align: right;
+}
+
+.sec2>p:nth-child(2) {
+    font-family: 'Lato', sans-serif;
+    color: #aaa;
+    text-align: right;
+    font-size: 0.8rem;
+}
+
+.sec2>button {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+
+.mb-5{
+    margin-bottom: 50px;
+}
+
+.myInnerBlock > img {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.2s ease-out;
+}
+
+.myInnerBlock:hover > img {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.myInnerBlock > h4 {
+    text-align: center;
+}
+
+.innerBlock {
+    min-height: 300px;
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column nowrap;
+    padding: 20px;
+    color: #fff;
+    background: rgba(149, 222, 193, 1);
+    background: -moz-linear-gradient(-45deg, rgba(149, 222, 193, 1) 0%, rgba(149, 222, 187, 1) 13%, rgba(116, 207, 174, 1) 41%, rgba(118, 194, 207, 1) 69%, rgba(73, 165, 191, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(149, 222, 193, 1)), color-stop(13%, rgba(149, 222, 187, 1)), color-stop(41%, rgba(116, 207, 174, 1)), color-stop(69%, rgba(118, 194, 207, 1)), color-stop(100%, rgba(73, 165, 191, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(149, 222, 193, 1) 0%, rgba(149, 222, 187, 1) 13%, rgba(116, 207, 174, 1) 41%, rgba(118, 194, 207, 1) 69%, rgba(73, 165, 191, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(149, 222, 193, 1) 0%, rgba(149, 222, 187, 1) 13%, rgba(116, 207, 174, 1) 41%, rgba(118, 194, 207, 1) 69%, rgba(73, 165, 191, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(149, 222, 193, 1) 0%, rgba(149, 222, 187, 1) 13%, rgba(116, 207, 174, 1) 41%, rgba(118, 194, 207, 1) 69%, rgba(73, 165, 191, 1) 100%);
+    background: linear-gradient(135deg, rgba(149, 222, 193, 1) 0%, rgba(149, 222, 187, 1) 13%, rgba(116, 207, 174, 1) 41%, rgba(118, 194, 207, 1) 69%, rgba(73, 165, 191, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#95dec1', endColorstr='#49a5bf', GradientType=1);
+}
+
+.innerBlock:hover {
+    cursor: pointer;
+    box-shadow: 6px 6px 10px 2px darkslategrey;
+}
+
+.innerBlock>p {
+    border-top: 2px solid #fff;
+    box-shadow: 2px 4px 5px #eee;
+}

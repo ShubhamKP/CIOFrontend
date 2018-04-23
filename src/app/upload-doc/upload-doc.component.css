@@ -1,0 +1,17 @@
+#docFileHolder>img , .profilePicBox{
+    width: 200px;
+    height: 200px;
+    border: 3px solid black;
+    border-radius: 3%;
+    box-shadow: 2px 2px 2px 1px slategrey;
+}
+
+#docFileHolder {
+    display: block;
+    margin: 20px 0px;
+    clear: both;
+}
+
+#tagInput {
+    width: 40%;
+}

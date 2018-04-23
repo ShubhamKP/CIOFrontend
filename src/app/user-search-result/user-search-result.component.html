@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <h2 class="page-header">Search result</h2>
+</div>
+
+<div class="searchResWrapper">
+    <!-- <div *ngFor="let res of searchResult">
+        <p [routerLink]="['/student',res.membershipNo]">
+            <span>{{res.name}}</span>
+            <span>{{res.email}}</span>
+        </p>
+    </div> -->
+    <div *ngIf="searchResult" class="notificationCard cardShadow maxH70p">
+        <div class="fl-b20">
+            <img class="notiIcon searchedUserIcon" [src]='searchResult?.pictureUrl || "assets/images/user.png"'>
+        </div>
+        <div class="fl-b80">
+            <span class="notiName" style="line-height: 50px;">{{searchResult?.firstName}} {{searchResult?.lastName}}</span>
+            <span>
+                <button class="btn btn-sm btn-success acceptBtn viewProfileBtn" [routerLink]="['/userDashboard/userProfile', searchResult?._id || 123]">View Profile</button>
+            </span>
+        </div>
+    </div>
+    <div *ngIf="!searchResult" class="notificationCard cardShadow maxH70p" style="padding-left: 20px;">
+        <h3>No User Found!</h3>
+    </div>
+</div>

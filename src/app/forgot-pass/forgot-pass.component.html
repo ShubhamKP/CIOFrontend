@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Forgot Password?</h2>
+  <hr>
+  <p>Type your email here</p>
+  <form [formGroup]="forgotForm" novalidate>
+    <div class="form-group" [ngClass]="{'has-danger': forgotForm.get('email').touched && (forgotForm.get('email').status == 'INVALID'),'has-success': forgotForm.get('email').dirty && (forgotForm.get('email').status == 'VALID')}">
+      <label class="sr-only" for="emailInput1">Email</label>
+      <input class="form-control" type="email" id="emailInput1" formControlName="email" placeholder="suhsil@abc.com">
+      <small *ngIf="forgotForm.get('email').dirty && (forgotForm.get('email').status == 'INVALID')">Please enter correct email-id</small>
+    </div>
+    <div formGroupName="passwords">
+      <div class="form-group" [ngClass]="{'has-danger': forgotForm.get('passwords.password').touched && (forgotForm.get('passwords.password').status == 'INVALID'),'has-success': forgotForm.get('passwords.password').dirty && (forgotForm.get('passwords.password').status == 'VALID')}">
+        <label class="sr-only" for="passwordInput">Password</label>
+        <input class="form-control" type="password" id="passwordInput" formControlName="password" placeholder="Password">
+        <small *ngIf="forgotForm.get('passwords.password').dirty && (forgotForm.get('passwords.password').status == 'INVALID' || forgotForm.get('passwords.password').hasError('minlength'))">Please enter atleast 8 character long</small>
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': forgotForm.get('passwords.confirmPassword').touched && (forgotForm.get('passwords.confirmPassword').status == 'INVALID' || forgotForm.get('passwords.password').hasError('minLength')),
+              'has-success': forgotForm.get('passwords.confirmPassword').dirty && !forgotForm.get('passwords').hasError('match')}">
+        <label class="sr-only" for="confirmPasswordInput">Confirm password</label>
+        <input class="form-control" type="password" id="confirmPasswordInput" formControlName="confirmPassword" placeholder="Confirm Password">
+        <small *ngIf="forgotForm.get('passwords').hasError('match')">Password does not match</small>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="send()" [disabled]="!forgotForm.valid">Submit</button>
+  </form>
+</div>

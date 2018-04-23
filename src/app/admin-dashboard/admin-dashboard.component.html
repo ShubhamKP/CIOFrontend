@@ -1,0 +1,164 @@
+<nav class="navbar navbar-expand-lg navbarFixed">
+  <a class="navbar-brand">
+      <button id="menuBtn" class="btn btn-primary menuBtnSmall" (click)="toggleSidebar($event)">
+          <i class="fa fa-bars"></i>
+      </button>
+      Admin's Dashboard</a>
+  <div class="dropdown fl-r ma15">
+      <a class="dropdown-toggle user" type="button" data-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-user"></i>
+          <span>{{user.firstName}} {{user.lastName}}</span>
+      </a>
+      <ul class="dropdown-menu rightDropdown">
+          <li>
+              <a (click)="logout()">Logout</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<div #sidebar class="sidebar">
+  <a type="button" class="sidebarOption" (click)="changeToAddCio()">
+      <span class="fa fa-plus-square sidebarIcon"></span>
+      <span class="sidebarOptionName">Add new CIO</span>
+  </a>
+  <a type="button" class="sidebarOption" (click)="changeToAddCategory()">
+      <span class="fa fa-plus-square sidebarIcon"></span>
+      <span class="sidebarOptionName">Add new search category</span>
+  </a>
+  <a type="button" class="sidebarOption" (click)="changeToCompany()">
+      <span class="fa fa-plus-square sidebarIcon"></span>
+      <span class="sidebarOptionName">Add Company's Profile</span>
+  </a>
+  <a type="button" class="sidebarOption" (click)="changeToSearch()">
+      <span class="fa fa-search sidebarIcon"></span>
+      <span class="sidebarOptionName">Search CIOs</span>
+  </a>
+</div>
+
+<div id="tab-container" class="container">
+  <div class="row mt60">
+      <div class="col-md-12 mb20">
+          <h2 class="page-header mb20">Welcome, {{user.firstName}} {{user.lastName}}</h2>
+      </div>
+      <div *ngIf="addCio" class="container mAuto">
+        <h4 class="mb20">Add CIO</h4>
+        <div class="userCard col-sm-6">
+          <form [formGroup]="addCioForm" novalidate>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('firstName').touched && (addCioForm.get('firstName').status == 'INVALID'),'has-success': addCioForm.get('firstName').dirty && (addCioForm.get('firstName').status == 'VALID')}">
+                  <label class="sr-only" for="firstNameInput">First Name</label>
+                  <input class="form-control" type="text" id="firstNameInput" formControlName="firstName" placeholder="eg: Sushil">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('lastName').touched && (addCioForm.get('lastName').status == 'INVALID'),'has-success': addCioForm.get('lastName').dirty && (addCioForm.get('lastName').status == 'VALID')}">
+                  <label class="sr-only" for="lastNameInput">Last Name</label>
+                  <input class="form-control" type="text" id="lastNameInput" formControlName="lastName" placeholder="eg: Kumar">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('emailAddress').touched && (addCioForm.get('emailAddress').status == 'INVALID'),'has-success': addCioForm.get('emailAddress').dirty && (addCioForm.get('emailAddress').status == 'VALID')}">
+                  <label class="sr-only" for="emailInput">Email</label>
+                  <input class="form-control" type="email" id="emailInput" formControlName="emailAddress" placeholder="eg: suhsil@abc.com">
+                  <small *ngIf="addCioForm.get('emailAddress').dirty && (addCioForm.get('emailAddress').status == 'INVALID')" class="form-control-feedback">Please enter correct email-id</small>
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('password').touched && (addCioForm.get('password').status == 'INVALID'),'has-success': addCioForm.get('password').dirty && (addCioForm.get('password').status == 'VALID')}">
+                  <label class="sr-only" for="passwordInput">password</label>
+                  <input class="form-control" type="password" id="passwordInput" formControlName="password" placeholder="password..">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('headline').touched && (addCioForm.get('headline').status == 'INVALID'),'has-success': addCioForm.get('headline').dirty && (addCioForm.get('headline').status == 'VALID')}">
+                  <label class="sr-only" for="headlineInput">What you do</label>
+                  <input class="form-control" type="text" id="headlineInput" formControlName="headline" placeholder="What you do..">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('publicProfileUrl').touched && (addCioForm.get('publicProfileUrl').status == 'INVALID'),'has-success': addCioForm.get('publicProfileUrl').dirty && (addCioForm.get('publicProfileUrl').status == 'VALID')}">
+                  <label class="sr-only" for="publicProfileUrlInput">Profile Url</label>
+                  <input class="form-control" type="text" id="publicProfileUrlInput" formControlName="publicProfileUrl" placeholder="Your LinkedIn profile url">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('pictureUrl').touched && (addCioForm.get('pictureUrl').status == 'INVALID'),'has-success': addCioForm.get('pictureUrl').dirty && (addCioForm.get('pictureUrl').status == 'VALID')}">
+                  <label class="sr-only" for="pictureUrlInput">Profile Picture</label>
+                  <input class="form-control" type="text" id="pictureUrlInput" formControlName="pictureUrl" placeholder="Profile Image url">
+                  <!-- <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button> -->
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('age').touched && (addCioForm.get('age').status == 'INVALID'),'has-success': addCioForm.get('age').dirty && (addCioForm.get('age').status == 'VALID')}">
+                <label class="sr-only" for="ageInput">Age</label>
+                <input class="form-control" type="number" id="ageInput" formControlName="age" placeholder="Age">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('country').touched && (addCioForm.get('country').status == 'INVALID'),'has-success': addCioForm.get('country').dirty && (addCioForm.get('country').status == 'VALID')}">
+                <label class="sr-only" for="countryInput">Country</label>
+                <input class="form-control" type="text" id="countryInput" formControlName="country" placeholder="Country">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('industry').touched && (addCioForm.get('industry').status == 'INVALID'),'has-success': addCioForm.get('industry').dirty && (addCioForm.get('industry').status == 'VALID')}">
+                <label class="sr-only" for="industryInput">Industry</label>
+                <input class="form-control" type="text" id="industryInput" formControlName="industry" placeholder="Industry">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('degree').touched && (addCioForm.get('degree').status == 'INVALID'),'has-success': addCioForm.get('degree').dirty && (addCioForm.get('degree').status == 'VALID')}">
+                <label class="sr-only" for="degreeInput">Degree</label>
+                <input class="form-control" type="text" id="degreeInput" formControlName="degree" placeholder="Degree">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('achievements').touched && (addCioForm.get('achievements').status == 'INVALID'),'has-success': addCioForm.get('achievements').dirty && (addCioForm.get('achievements').status == 'VALID')}">
+                <label class="sr-only" for="achievementsInput">Achievements</label>
+                <input class="form-control" type="text" id="achievementsInput" formControlName="achievements" placeholder="Achievements">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('experience').touched && (addCioForm.get('experience').status == 'INVALID'),'has-success': addCioForm.get('experience').dirty && (addCioForm.get('experience').status == 'VALID')}">
+                <label class="sr-only" for="experienceInput">Experience</label>
+                <input class="form-control" type="text" id="experienceInput" formControlName="experience" placeholder="Experience">
+              </div>
+              <div class="form-group" [ngClass]="{'has-danger': addCioForm.get('hobbies').touched && (addCioForm.get('hobbies').status == 'INVALID'),'has-success': addCioForm.get('hobbies').dirty && (addCioForm.get('hobbies').status == 'VALID')}">
+                <label class="sr-only" for="hobbiesInput">Hobbies</label>
+                <input class="form-control" type="text" id="hobbiesInput" formControlName="hobbies" placeholder="Hobbies">
+              </div>
+              <button type="submit" class="btn btn-primary" (click)="addNewCio()">Add CIO
+                  <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+              </button>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="searchShow" class="container mAuto">
+        <h4 class="mb20">Search CIOs</h4>
+        <form id="searchForm" class="tCenter" (ngSubmit)="search()" [formGroup]="searchForm" novalidate>
+          <span>Search By: </span>
+          <label class="radio-inline" *ngFor="let category of searchCategory">
+              <input id="searchByOption" type="radio" formControlName="searchBy" [value]="category">{{ category }}
+          </label>
+          <br>
+          <input id="searchInput" class="mt20 mb20" type="text" name="search" placeholder="Search.." formControlName="searchValue">
+          <button id="searchBtn" type="submit" [disabled]="!searchForm.valid">Search</button>
+        </form>
+        <div class="searchResult mb20" *ngIf="showResult">
+            <div class="searchResWrapper">
+                <div *ngFor="let res of searchResult">
+                    <p [routerLink]="['/student',res.membershipNo]">
+                        <span>{{res.name}}</span>
+                        <span>{{res.email}}</span>
+                    </p>
+                    <button class="btn btn-danger" (click)="deleteUser(res.email)">Delete</button>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div *ngIf="addCategory" class="container mAuto">
+        <h4 class="mb20">Add Search Category</h4>
+        <form (ngSubmit)="addNewCategory()" [formGroup]="addCategoryForm" novalidate>
+          <input class="mt20 mb20 form-control w40" type="text" name="search" placeholder="Type new search category" formControlName="newCategoryValue">
+          <button class="btn btn-primary" type="submit" [disabled]="!addCategoryForm.valid">Add
+            <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+          </button>
+        </form>
+      </div>
+      <div *ngIf="addCompany" class="container mAuto" id="addCompany">
+        <h4 class="mb20">Add Company</h4>
+        <form [formGroup]="addCompanyForm" (ngSubmit)="createCompany()" novalidate>
+            <div class="form-group" [ngClass]="{'has-danger': addCompanyForm.get('profilePic').touched && (addCompanyForm.get('profilePic').status == 'INVALID'),'has-success': addCompanyForm.get('profilePic').dirty && (addCompanyForm.get('profilePic').status == 'VALID')}">
+                <label for="profilePicInput">Select image: </label>
+                <div id="profilePicHolder" #profilePicHolder></div>
+                <input class="col-sm-8 fileInput" type="file" id="profilePicInput" (change)="onFileChange($event)" #fileInput>
+                <button type="button" class="btn btn-sm btn-default fa fa-close" (click)="clearFile()"></button>
+            </div>
+            <div class="form-group" [ngClass]="{'has-danger': addCompanyForm.get('companyName').touched && (addCompanyForm.get('companyName').status == 'INVALID'),'has-success': addCompanyForm.get('companyName').dirty && (addCompanyForm.get('companyName').status == 'VALID')}">
+                <label class="sr-only" for="companyNameInput">Company Name</label>
+                <input class="form-control" type="text" id="companyNameInput" formControlName="companyName" placeholder="Enter company name">
+            </div>
+            <textarea class="form-control" formControlName="companyDescription" rows="5" placeholder="Company's description here"></textarea>
+            <br>
+            <button class="btn btn-primary" type="submit" [disabled]="!addCompanyForm.valid">Add Company</button>
+        </form>
+      </div>
+  </div>
+
+</div>

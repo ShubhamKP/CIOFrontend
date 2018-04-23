@@ -46,7 +46,7 @@ export class WebinarComponent implements OnInit {
   }
   joinExistingSession(){
     let joinSessionId= this.joinSessionForm.get('joinSessionId').value;
-    this.httpService.joinWebinar({joinSessionId}).subscribe((result)=>{
+    this.httpService.joinWebinarSubscriber({sessionId:joinSessionId}).subscribe((result)=>{
       console.log(result);
       this.successMsg=true;
       

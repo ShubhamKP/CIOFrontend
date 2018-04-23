@@ -282,7 +282,16 @@ export class NativeService {
             .do(data => console.log( JSON.stringify(data)))
             .catch(this.handleError);
     }
+    joinWebinarSubscriber(sessionId): Observable<Response> {
 
+
+        
+        console.log(this.jwt())
+        return this.http.post(API_URL+'/api/joinWebinarSubscriber', sessionId, this.jwt())
+            .map(this.extractData)
+            .do(data => console.log( JSON.stringify(data)))
+            .catch(this.handleError);
+    }
     ////////
 
 }

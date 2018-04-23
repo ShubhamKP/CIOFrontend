@@ -5,10 +5,10 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-
+import { environment } from '../../environments/environment';
 import { signupForm } from '../data-model/data-model'
 import { loginForm } from '../data-model/data-model'
-
+const API_URL = environment.API_URL;
 @Injectable()
 export class NativeService {
     public token: string;
@@ -26,7 +26,7 @@ export class NativeService {
     login(email: string, password: string): Observable<boolean> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let requestOption = new RequestOptions({ headers: headers });
-        return this.http.post('/login', JSON.stringify({ email: email, password: password }), requestOption)
+        return this.http.post(API_URL+'/login', JSON.stringify({ email: email, password: password }), requestOption)
             .map((response: Response) => {
                 if (response.json().code === 200) {
                     // login successful if there's a jwt token in the response
@@ -57,28 +57,28 @@ export class NativeService {
     signup(new_user): Observable<Response> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let requestOption = new RequestOptions({ headers: headers });
-        return this.http.post('/signup', new_user, requestOption)
+        return this.http.post(API_URL+'/signup', new_user, requestOption)
             .map(this.extractData)
             .do(data => console.log('added new user ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     // addLinkedInUser(new_prod):Observable<Response>{
-    //     return this.http.post('/addUserLinkedInData',new_prod)
+    //     return this.http.post(API_URL+'/addUserLinkedInData',new_prod)
     //                   .map(this.extractData)
     //                   .do(data => console.log('added new linkedin user'+JSON.stringify(data)))
     //                   .catch(this.handleError);
     //   }
 
     searchByCategory(searchQueries): Observable<Response> {
-        return this.http.post('/api/getSearchResults', searchQueries, this.jwt())
+        return this.http.post(API_URL+'/api/getSearchResults', searchQueries, this.jwt())
             .map(this.extractData)
             .do(data => console.log('search result' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     addCategory(category): Observable<Response> {
-        return this.http.post('/api/addNewCategory', category, this.jwt())
+        return this.http.post(API_URL+'/api/addNewCategory', category, this.jwt())
             .map(this.extractData)
             .do(data => console.log('search result' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -90,7 +90,7 @@ export class NativeService {
         headers.append('Authorization', 'Bearer ' + currentUser.token);
         headers.delete('Content-Type');
         let reqOption = new RequestOptions({ headers: headers });
-        return this.http.post('/api/publishPost', post, reqOption)
+        return this.http.post(API_URL+'/api/publishPost', post, reqOption)
             .map(this.extractData)
             .do(data => console.log('search result' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -102,49 +102,49 @@ export class NativeService {
         headers.append('Authorization', 'Bearer ' + currentUser.token);
         headers.delete('Content-Type');
         let reqOption = new RequestOptions({ headers: headers });
-        return this.http.post('/api/publishBlog', post, reqOption)
+        return this.http.post(API_URL+'/api/publishBlog', post, reqOption)
             .map(this.extractData)
             .do(data => console.log('search result' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     createPassword(userData): Observable<Response> {
-        return this.http.post('/createPassword', userData)
+        return this.http.post(API_URL+'/createPassword', userData)
             .map(this.extractData)
             .do(data => console.log('updated password' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     checkUserStatus(userEmail): Observable<Response> {
-        return this.http.post('/checkUserPresent', userEmail)
+        return this.http.post(API_URL+'/checkUserPresent', userEmail)
             .map(this.extractData)
             .do(data => console.log('user status ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     forgotPass(userInfo): Observable<Response> {
-        return this.http.post('/createPassword', userInfo)
+        return this.http.post(API_URL+'/createPassword', userInfo)
             .map(this.extractData)
             .do(data => console.log('user status ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     followCio(cioData): Observable<Response> {
-        return this.http.post('/api/followCio', cioData, this.jwt())
+        return this.http.post(API_URL+'/api/followCio', cioData, this.jwt())
             .map(this.extractData)
             .do(data => console.log('just follow cio' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     
     addFriend(cioData): Observable<Response> {
-        return this.http.post('/api/sendFriendRequest', cioData, this.jwt())
+        return this.http.post(API_URL+'/api/sendFriendRequest', cioData, this.jwt())
             .map(this.extractData)
             .do(data => console.log('just become friend with cio' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     
     deleteCio(cioData): Observable<Response> {
-        return this.http.post('/api/deleteAccount', cioData, this.jwt())
+        return this.http.post(API_URL+'/api/deleteAccount', cioData, this.jwt())
             .map(this.extractData)
             .do(data => console.log('just deleted cio' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -156,7 +156,7 @@ export class NativeService {
         headers.append('Authorization', 'Bearer ' + currentUser.token);
         headers.delete('Content-Type');
         let reqOption = new RequestOptions({ headers: headers });
-        return this.http.post('/upload', userData, reqOption)
+        return this.http.post(API_URL+'/upload', userData, reqOption)
             .map(this.extractData)
             .do(data => console.log('updated profile' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -169,7 +169,7 @@ export class NativeService {
         // headers.delete('Content-Type');
         // let reqOption = new RequestOptions({ headers: headers });
         console.log("from service ",cioData);
-        return this.http.post('/api/createCioProfile', cioData, this.jwt())
+        return this.http.post(API_URL+'/api/createCioProfile', cioData, this.jwt())
             .map(this.extractData)
             .do(data => console.log('created cio profile' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -181,14 +181,14 @@ export class NativeService {
         headers.append('Authorization', 'Bearer ' + currentUser.token);
         headers.delete('Content-Type');
         let reqOption = new RequestOptions({ headers: headers });
-        return this.http.post('/api/createCompanyProfile', companyData, reqOption)
+        return this.http.post(API_URL+'/api/createCompanyProfile', companyData, reqOption)
             .map(this.extractData)
             .do(data => console.log('created company profile' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     acceptTheReq(fromCio): Observable<Response> {
-        return this.http.post('/api/acceptFriendRequest', fromCio, this.jwt())
+        return this.http.post(API_URL+'/api/acceptFriendRequest', fromCio, this.jwt())
             .map(this.extractData)
             .do(data => console.log('just become friend with cio' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -200,7 +200,7 @@ export class NativeService {
         headers.append('Authorization', 'Bearer ' + currentUser.token);
         headers.delete('Content-Type');
         let reqOption = new RequestOptions({ headers: headers });
-        return this.http.post('/api/uploadDocument', documentData, reqOption)
+        return this.http.post(API_URL+'/api/uploadDocument', documentData, reqOption)
             .map(this.extractData)
             .do(data => console.log('uploaded document' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -209,21 +209,21 @@ export class NativeService {
     getSearchOptions(): Observable<any[]> {
 
         // get cafe expenses from api
-        return this.http.get('/api/getCategoryList', this.jwt())
+        return this.http.get(API_URL+'/api/getCategoryList', this.jwt())
             .map((response: Response) => response.json().data)
             .catch(this.handleError);
     }
 
     getAllFriendReq(): Observable<any[]> {
         // get cafe expenses from api
-        return this.http.get('/api/getAllFriendRequests', this.jwt())
+        return this.http.get(API_URL+'/api/getAllFriendRequests', this.jwt())
             .map((response: Response) => response.json().data)
             .catch(this.handleError);
     }
 
     getAllCIO(): Observable<any[]> {
         // get cafe expenses from api
-        return this.http.get('/api/topCioList', this.jwt())
+        return this.http.get(API_URL+'/api/topCioList', this.jwt())
             .map((response: Response) => response.json().data)
             .catch(this.handleError);
     }

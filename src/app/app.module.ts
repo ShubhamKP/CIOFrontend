@@ -11,7 +11,7 @@ import { ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { LinkedInSdkModule } from 'angular-linkedin-sdk';
 import { NativeService } from "./http-services/native.services";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
+import { OpentokService } from './common/opentok.service';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RoutesModule } from './routes/routes.module';
@@ -34,6 +34,8 @@ import { ProfessionalPagesComponent } from './professional-pages/professional-pa
 import { UploadDocComponent } from './upload-doc/upload-doc.component';
 import { LibraryViewComponent } from './library-view/library-view.component';
 import { LibraryListComponent } from './library-list/library-list.component';
+import { WebinarSubscriberComponent } from './webinar-subscriber/webinar-subscriber.component';
+import { WebinarPublisherComponent } from './webinar-publisher/webinar-publisher.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { LibraryListComponent } from './library-list/library-list.component';
     ProfessionalPagesComponent,
     UploadDocComponent,
     LibraryViewComponent,
-    LibraryListComponent
+    LibraryListComponent,
+    WebinarSubscriberComponent,
+    WebinarPublisherComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +75,7 @@ import { LibraryListComponent } from './library-list/library-list.component';
     AuthGuard,
     ToastsManager,
     ToastOptions,
+    OpentokService,
     // Inject apiKey and, optionally, authorize to integrate with LinkedIN official API
     { provide: 'apiKey', useValue: '819wq9dc77z5sn' },
     { provide: 'authorize', useValue: 'true' }, // OPTIONAL by default: false

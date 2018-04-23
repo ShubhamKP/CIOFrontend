@@ -1,3 +1,9 @@
+if(sessionStorage.getItem('session')){
+  var session = JSON.parse(sessionStorage.getItem('session'));
+}
+else{
+  session={}
+}
 export default {
     // Set this to the base URL of your sample server, such as 'https://your-app-name.herokuapp.com'.
     // Do not include the trailing slash. See the README for more information:
@@ -5,8 +11,8 @@ export default {
     // OR, if you have not set up a web server that runs the learning-opentok-php code,
     // set these values to OpenTok API key, a valid session ID, and a token for the session.
     // For test purposes, you can obtain these from https://tokbox.com/account.
-    API_KEY: '',
-    SESSION_ID: '',
-    TOKEN: ''
+    API_KEY: '46105282',
+    SESSION_ID: session.sessionId||'',
+    TOKEN: session.token||''
   };
   

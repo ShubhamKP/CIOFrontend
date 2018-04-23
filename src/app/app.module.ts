@@ -36,6 +36,8 @@ import { LibraryViewComponent } from './library-view/library-view.component';
 import { LibraryListComponent } from './library-list/library-list.component';
 import { WebinarSubscriberComponent } from './webinar-subscriber/webinar-subscriber.component';
 import { WebinarPublisherComponent } from './webinar-publisher/webinar-publisher.component';
+import { WebinarComponent } from './webinar/webinar.component';
+import { WebinarMainComponent } from './webinar-main/webinar-main.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { WebinarPublisherComponent } from './webinar-publisher/webinar-publisher
     LibraryViewComponent,
     LibraryListComponent,
     WebinarSubscriberComponent,
-    WebinarPublisherComponent
+    WebinarPublisherComponent,
+    WebinarComponent,
+    WebinarMainComponent
   ],
   imports: [
     BrowserModule,

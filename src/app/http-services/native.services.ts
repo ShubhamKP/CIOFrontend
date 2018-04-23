@@ -259,4 +259,30 @@ export class NativeService {
             return false;
     }
 
+
+    ////// Webinar Services
+
+    createWebinarReq(): Observable<Response> {
+
+
+        
+        console.log(this.jwt())
+        return this.http.post(API_URL+'/api/createWebinarReq', {}, this.jwt())
+            .map(this.extractData)
+            .do(data => console.log(JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+    joinWebinar(sessionId): Observable<Response> {
+
+
+        
+        console.log(this.jwt())
+        return this.http.post(API_URL+'/api/joinWebinar', sessionId, this.jwt())
+            .map(this.extractData)
+            .do(data => console.log( JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    ////////
+
 }

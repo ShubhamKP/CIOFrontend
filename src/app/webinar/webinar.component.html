@@ -1,0 +1,32 @@
+<div class="container" style="margin: auto;text-align: center;">
+<div  *ngIf="!successMsg" class="row">
+    <div class="col-lg-3">
+        <a class="btn btn-primary" (click)="createWebinar()">Create webinar</a>
+    </div>
+    <div class="col-lg-1">
+        Or
+    </div>
+    <div class="col-lg-8">
+        <div class="row">
+                <form [formGroup]="joinSessionForm" novalidate>
+            <div class="col-lg-8">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">SessionId</span>
+            <input  formControlName="joinSessionId" type="text" class="form-control" placeholder="Enter session id" aria-describedby="basic-addon1">
+          </div>
+          </div>
+          <div class="col-lg-4"><button type="submit" [disabled]="!joinSessionForm.valid" class="btn btn-primary" (click)="joinExistingSession()">Join Session</button></div>
+          </form>
+        </div>
+    </div>
+</div>
+   
+<div>
+   
+</div>
+
+    <div *ngIf="successMsg">
+<div>Session with sessionId <span style="color: green;font-weight: bold;">{{session.session.sessionId}}</span> Created Successfully</div>
+<a class="btn btn-primary" (click)="joinSession(session.session.sessionId)">Join Session</a>
+</div>
+</div>

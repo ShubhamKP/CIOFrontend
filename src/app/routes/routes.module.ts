@@ -19,6 +19,10 @@ import { UserMessagesComponent } from '../user-messages/user-messages.component'
 import { UserBlogPostComponent } from '../user-blog-post/user-blog-post.component';
 import { UserSearchResultComponent } from '../user-search-result/user-search-result.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { WebinarSubscriberComponent } from '../webinar-subscriber/webinar-subscriber.component';
+import { WebinarPublisherComponent } from '../webinar-publisher/webinar-publisher.component';
+import { WebinarComponent } from '../webinar/webinar.component';
+import { WebinarMainComponent } from '../webinar-main/webinar-main.component';
 
 const routes: Routes = [
   {
@@ -48,6 +52,10 @@ const routes: Routes = [
       { path: 'library', component: LibraryViewComponent },
       { path: 'userProfile/:id', component: UserProfileComponent },
       { path: 'library/:type/:section', component: LibraryListComponent },
+      { path: 'webinar', component: WebinarComponent },
+      { path: 'subscriberwebinar', component: WebinarSubscriberComponent },
+      { path: 'publisherwebinar', component: WebinarPublisherComponent },
+      { path: 'webinarmain', component: WebinarMainComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' }
     ]
   },
